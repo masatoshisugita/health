@@ -1,0 +1,57 @@
+<div class="row form_show">
+  <div class="offset-sm-2 col-sm-8">
+    <table class="table table-hover table_topic">
+      <tbody>
+        <tr>
+          <th>ユーザー名</th>
+          <td class="text-center"><%= link_to @post.user.name,@post.user %></td>
+        </tr>
+        <tr>
+          <th>体重</th>
+          <td class="text-center"><%= @post.weight %></td>
+        </tr>
+        <tr>
+          <th>BMI</th>
+          <td class="text-center"><%= @bmi %></td>
+        </tr>
+        <tr>
+          <th>運動</th>
+          <td class="text-center"><%= @post.motion_name %></td>
+        </tr>
+        <tr>
+          <th>運動時間</th>
+          <td class="text-center"><%= @motion_time %></td>
+        </tr>
+        <tr>
+          <th>睡眠時間</th>
+          <td class="text-center"><%= @sleep_time %></td>
+        </tr>
+        <tr>
+          <th>内容</th>
+          <td class="text-center"><%= @post.detail %></td>
+        </tr>
+      </tbody>
+    </table>
+    <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
+  </div>
+</div>
+
+<%= column_chart @graph_weight,
+    width: '400px',
+    heigth: '500px',
+    xtitle: "投稿日",
+    ytitle: '体重(kg)' %>
+
+<%= column_chart @graph_sleep,
+    width: '400px',
+    heigth: '500px',
+    xtitle: "投稿日",
+    ytitle: '睡眠時間（時間）' %>
+
+<%= column_chart @graph_motion,
+    width: '400px',
+    heigth: '500px',
+    xtitle: "投稿日",
+    ytitle: '運動時間（時間）' %>

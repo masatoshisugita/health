@@ -1,0 +1,32 @@
+<nav class="navbar navbar-dark" style="background-color:#CCFFFF">
+  <h1 class="navbar-brand" style="color:#000080"><%= link_to 'Health', root_path %></h1>
+  <% if current_user %>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "#{current_user.name}",user_path(current_user),class:'nav-link text-primary' %>
+      </li>
+    </ul>
+    <ul class="navbar-nav pl-5">
+      <li class="nav-item">
+        <%= link_to '投稿作成',new_post_path,class:'nav-link text-primary' %>
+      </li>
+    </ul>
+    <ul class="navbar-nav pl-5">
+      <li class="nav-item">
+        <%= link_to 'ログアウト',logout_path, method: :delete,class:'nav-link text-primary' %>
+      </li>
+    </ul>
+  <% else %>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to 'ユーザー作成',new_user_path, class:'nav-link text-primary' %>
+      </li>
+    </ul>
+    <ul class="navbar-nav pl-5">
+      <li class="nav-item">
+        <%= link_to 'ユーザーログイン',login_path, class:'nav-link text-primary' %>
+      </li>
+    </ul>
+  <% end %>
+  </ul>
+</nav>

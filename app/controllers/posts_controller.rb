@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy graph]
   skip_before_action :login_required
 
   def index
     if current_user.nil?
       redirect_to login_url
     end
-    @posts = Post.all
+    @posts = Post.all.includes(:user).order(created_at: "DESC")
   end
 
   def new
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @graph_sleep.each do |g|
       g[0] = g[0].strftime("%Y年%m月%d日")
     end
-    
+
     @graph_motion = @graph.pluck(:created_at,:motion_time)
     @graph_motion.each do |g|
       g[0] = g[0].strftime("%Y年%m月%d日")
@@ -48,6 +48,25 @@ class PostsController < ApplicationController
   end
 
   def edit; end
+
+  def graph
+    @graph = Post.where(user_id: @post.user_id )
+
+    @graph_weight = @graph.pluck(:created_at,:weight)
+    @graph_weight.each do |g|
+      g[0] = g[0].strftime("%Y年%m月%d日")
+    end
+
+    @graph_sleep = @graph.pluck(:created_at,:sleep_time)
+    @graph_sleep.each do |g|
+      g[0] = g[0].strftime("%Y年%m月%d日")
+    end
+
+    @graph_motion = @graph.pluck(:created_at,:motion_time)
+    @graph_motion.each do |g|
+      g[0] = g[0].strftime("%Y年%m月%d日")
+    end
+  end
 
   private
   

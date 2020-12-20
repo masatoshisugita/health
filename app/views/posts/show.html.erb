@@ -1,5 +1,10 @@
 <div class="row form_show">
-  <div class="offset-sm-2 col-sm-8">
+  <div class="col-sm-3 bg-success">
+    <p class="text-center">
+      <%= link_to "グラフはこちら","/posts/#{@post.id}/graph",class: "text-white" %>
+    </p>
+  </div>
+  <div class="col-sm-9 bg-warning">
     <table class="table table-hover table_topic">
       <tbody>
         <tr>
@@ -32,26 +37,6 @@
         </tr>
       </tbody>
     </table>
-    <p id="notice"><%= notice %></p>
-    <p id="notice"><%= notice %></p>
-    <p id="notice"><%= notice %></p>
   </div>
 </div>
 
-<%= column_chart @graph_weight,
-    width: '400px',
-    heigth: '500px',
-    xtitle: "投稿日",
-    ytitle: '体重(kg)' %>
-
-<%= column_chart @graph_sleep,
-    width: '400px',
-    heigth: '500px',
-    xtitle: "投稿日",
-    ytitle: '睡眠時間（時間）' %>
-
-<%= column_chart @graph_motion,
-    width: '400px',
-    heigth: '500px',
-    xtitle: "投稿日",
-    ytitle: '運動時間（時間）' %>
